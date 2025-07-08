@@ -2,15 +2,16 @@
 ; Windows Quake - Multi-App Manager
 ; AutoHotkey v2 Script
 ; Author：Sean2077
-; Version：1.0
+; Version：1.1
 ; Changes：
+;   1.1 add tray menu: open config file, open script directory
 ;   1.0 first release:
 ;       - supports toggle visibility of applications with hotkeys
 ;       - supports launching applications with hotkeys
 ;       - supports multi-window cycling activation with hotkeys
 ;       - supports configuration file (automatically reads the same filename ini file in the script directory)
 
-VERSION := "1.0"
+VERSION := "1.1"
 SCRIPT_NAME := "winguake(v" . VERSION . ")"
 SCRIPT_FULLNAME := "Windows Quake - Multi-App Manager (v" . VERSION . ")"
 
@@ -326,6 +327,17 @@ ValidateAllConfigs() {
     SetTimer(() => ToolTip("", , , 1), -2000)
     return true
 
+}
+
+; 辅助函数：打开脚本真实路径
+OpenScriptDirectory() {
+    local dir
+    SplitPath(configFile, , &dir)
+    Run(dir)
+}
+
+OpenConfigFile() {
+    Run(configFile)
 }
 
 
@@ -669,7 +681,9 @@ CreateTrayMenu() {
 
     A_TrayMenu.Add()  ; 分隔线
     A_TrayMenu.Add("Show app status (F12)", (*) => ShowAppStatus())
-    A_TrayMenu.Add("Show current app config status (Ctrl+F12)", (*) => ShowCurrentConfig())
+    A_TrayMenu.Add("Show current app config status", (*) => ShowCurrentConfig())
+    A_TrayMenu.Add("Open directory of script and config file", (*) => OpenScriptDirectory())
+    A_TrayMenu.Add("Open configuration file", (*) => OpenConfigFile())
     A_TrayMenu.Add("Help", ShowHelp)
     A_TrayMenu.Add()  ; 分隔线
     A_TrayMenu.Add("Exit", (*) => ExitApp())
