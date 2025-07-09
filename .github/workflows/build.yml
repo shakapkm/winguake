@@ -1,0 +1,43 @@
+name: Build and Release winguake
+
+on:
+  push:
+    tags:
+      - "v*" # 触发该工作流的事件是新标签的推送，标签以 "v" 开头
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build (x86)
+        uses: benmusson/ahk2exe-action@v1
+        with:
+          in: winguake.ahk
+          out: bin\winguake_x86_${{ github.ref_name }}.exe
+          target: x86
+          ahk-tag: latest
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build (x64)
+        uses: benmusson/ahk2exe-action@v1
+        with:
+          in: winguake.ahk
+          out: bin\winguake_x64_${{ github.ref_name }}.exe
+          target: x64
+          ahk-tag: latest
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload EXE to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            bin\winguake_x86_${{ github.ref_name }}.exe
+            bin\winguake_x64_${{ github.ref_name }}.exe
+            winguake.ahk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
