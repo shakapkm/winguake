@@ -1,6 +1,6 @@
 # winguake
 
-[中文](README_zh.md) | English
+[中文](README-zh.md) | English
 
 winguake is a lightweight tool for Windows that allows you to show, hide, or launch (almost) any application window using hotkeys, as well as switch between multiple windows of different applications or multiple windows of the same application. It is essentially an [AutoHotkey](https://github.com/AutoHotkey/AutoHotkey) v2 script.
 
