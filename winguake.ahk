@@ -20,7 +20,7 @@ SCRIPT_FULLNAME := "Windows Quake - Multi-App Manager (v" . VERSION . ")"
 #SingleInstance Force
 
 ; 设置托盘图标提示
-A_IconTip := SCRIPT_FULLNAME
+A_IconTip := SCRIPT_NAME
 
 ; ==================== 应用配置 ====================
 ; 🎯 只需要在这里添加/修改应用配置即可！
