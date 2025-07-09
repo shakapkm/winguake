@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/sean2077/winguake/compare/v1.0.0...v1.0.1) (2025-07-09)
+
+
+### Bug Fixes
+
+* fix default config file name problem ([2fcc644](https://github.com/sean2077/winguake/commit/2fcc644313bd397d9614cda7419217e28e332ac4))
+
 # 1.0.0 (2025-07-09)
 
 
