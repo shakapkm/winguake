@@ -2,16 +2,8 @@
 ; Windows Quake - Multi-App Manager
 ; AutoHotkey v2 Script
 ; Author：Sean2077
-; Version：1.1
-; Changes：
-;   1.1 add tray menu: open config file, open script directory
-;   1.0 first release:
-;       - supports toggle visibility of applications with hotkeys
-;       - supports launching applications with hotkeys
-;       - supports multi-window cycling activation with hotkeys
-;       - supports configuration file (automatically reads the same filename ini file in the script directory)
 
-VERSION := "1.1"
+VERSION := "0.1.0"
 SCRIPT_NAME := "winguake(v" . VERSION . ")"
 SCRIPT_FULLNAME := "Windows Quake - Multi-App Manager (v" . VERSION . ")"
 
@@ -337,6 +329,16 @@ OpenScriptDirectory() {
 }
 
 OpenConfigFile() {
+    ; 判断是否存在配置文件
+    if !FileExist(configFile) {
+        ; 如果配置文件不存在，提示用户是否创建
+        MsgBoxResult := MsgBox("Configuration file not found: " . configFile . "`nDo you want to create a new one?", "Configuration File Missing - " . SCRIPT_NAME, 4)
+        if (MsgBoxResult = "No") {
+            return  ; 用户选择不创建，直接返回
+        }
+        ; 创建新的配置文件
+        FileAppend("", configFile)
+    }
     Run(configFile)
 }
 
@@ -615,9 +617,6 @@ ShowNotification(message) {
 
 ; ==================== 扩展功能 ====================
 
-; 显示所有应用状态
-F12:: ShowAppStatus()
-
 ; 显示应用状态
 ShowAppStatus() {
     status := "Windows Quake - application status:`n`n"
@@ -680,7 +679,7 @@ CreateTrayMenu() {
     }
 
     A_TrayMenu.Add()  ; 分隔线
-    A_TrayMenu.Add("Show app status (F12)", (*) => ShowAppStatus())
+    A_TrayMenu.Add("Show app status", (*) => ShowAppStatus())
     A_TrayMenu.Add("Show current app config status", (*) => ShowCurrentConfig())
     A_TrayMenu.Add("Open directory of script and config file", (*) => OpenScriptDirectory())
     A_TrayMenu.Add("Open configuration file", (*) => OpenConfigFile())
@@ -689,7 +688,7 @@ CreateTrayMenu() {
     A_TrayMenu.Add("Exit", (*) => ExitApp())
 
     ; 设置默认菜单项
-    A_TrayMenu.Default := "Show app status (F12)"
+    A_TrayMenu.Default := "Show app status"
 }
 
 ; ==================== 帮助和管理 ====================
