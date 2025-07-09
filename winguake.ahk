@@ -103,7 +103,7 @@ GetConfigFilePath() {
 
     ; 获取脚本目录和文件名（不含扩展名）
     scriptDir := RegExReplace(realScriptPath, "\\[^\\]+$")
-    scriptNameNoExt := RegExReplace(realScriptPath, ".*\\|\.ahk$", "")
+    scriptNameNoExt := "winguake"  ; 默认配置文件名
 
     ; 构建配置文件路径
     configPath := scriptDir . "\" . scriptNameNoExt . ".ini"
