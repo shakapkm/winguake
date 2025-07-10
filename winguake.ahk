@@ -658,8 +658,6 @@ ShowAppStatus() {
     MsgBox(status, "Application Status - " . SCRIPT_NAME, 0x1000)
 }
 
-^F12:: ShowCurrentConfig()
-
 ; ==================== 系统托盘菜单 ====================
 
 ; 🤖 自动根据配置创建托盘菜单
@@ -735,11 +733,6 @@ ShowHelp(*) {
     MsgBox(helpText, "Help - " . SCRIPT_NAME)
 }
 
-; Hotkey: Show Help
-^!h:: ShowHelp()
-
-; Hotkey: Exit Script
-^!q:: ExitApp()
 
 ; ==================== 初始化 ====================
 
