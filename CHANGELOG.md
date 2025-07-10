@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/sean2077/winguake/compare/v1.0.1...v1.0.2) (2025-07-10)
+
+
+### Bug Fixes
+
+* remove unnecessary hotkey for help, quit etc. ([9fd0c51](https://github.com/sean2077/winguake/commit/9fd0c51436ec690383f181384e9439f8861aa100))
+
 ## [1.0.1](https://github.com/sean2077/winguake/compare/v1.0.0...v1.0.1) (2025-07-09)
 
 
